@@ -1,10 +1,39 @@
 {
-  "@odata.type": "#microsoft.graph.androidWorkProfileTrustedRootCertificate",
-  "displayName": "Android BYOD - Trusted Root CA",
-  "description": "Trusted root CA certificate for Android Enterprise personally-owned work profile (BYOD) devices.",
-  "roleScopeTagIds": [
-    "0"
-  ],
-  "certFileName": "RootCA.cer",
-  "trustedRootCertificate": "<BASE64_ENCODED_ROOT_CA_CERTIFICATE>"
+  "policyInfo": {
+    "name": "Android BYOD - Trusted Root CA",
+    "platform": "Android Enterprise - Personally-Owned Work Profile",
+    "profileType": "Trusted certificate",
+    "purpose": [
+      "Deploys the organization's root CA certificate to the work profile of personally-owned (BYOD) Android Enterprise devices so the device trusts certificates issued by that CA.",
+      "Establishes the chain of trust required by SCEP and PKCS certificate profiles. A SCEP or PKCS certificate profile fails if the device does not trust the root CA.",
+      "Lets Wi-Fi, VPN and email profiles that use certificate-based authentication validate servers and certificates issued by the internal CA.",
+      "Deploy it to the same user/device groups that receive the SCEP/PKCS certificate profile and the Wi-Fi/VPN/email profiles that use the certificate."
+    ],
+    "intuneAdminCenterPath": {
+      "url": "https://intune.microsoft.com",
+      "navigation": "Devices > Manage devices > Configuration > Create > New policy",
+      "steps": [
+        "Sign in to the Microsoft Intune admin center (https://intune.microsoft.com).",
+        "Go to Devices > Manage devices > Configuration > Create > New policy.",
+        "Platform: select 'Android Enterprise'.",
+        "Profile type: under 'Personally-Owned Work Profile', select 'Trusted certificate', then select Create.",
+        "Basics: enter the Name and Description, then select Next.",
+        "Configuration settings: upload the root CA certificate (.cer file), then select Next.",
+        "Scope tags: select the scope tags (Default if none), then select Next.",
+        "Assignments: select the BYOD user/device groups (the same groups as the SCEP/PKCS profile), then select Next.",
+        "Review + create: review the settings and select Create."
+      ]
+    },
+    "reference": "https://learn.microsoft.com/intune/device-configuration/certificates/trusted-root-profiles"
+  },
+  "policy": {
+    "@odata.type": "#microsoft.graph.androidWorkProfileTrustedRootCertificate",
+    "displayName": "Android BYOD - Trusted Root CA",
+    "description": "Trusted root CA certificate for Android Enterprise personally-owned work profile (BYOD) devices.",
+    "roleScopeTagIds": [
+      "0"
+    ],
+    "certFileName": "RootCA.cer",
+    "trustedRootCertificate": "<BASE64_ENCODED_ROOT_CA_CERTIFICATE>"
+  }
 }
