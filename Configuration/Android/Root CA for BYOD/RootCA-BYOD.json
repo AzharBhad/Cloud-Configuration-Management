@@ -1,0 +1,10 @@
+{
+  "@odata.type": "#microsoft.graph.androidWorkProfileTrustedRootCertificate",
+  "displayName": "Android BYOD - Trusted Root CA",
+  "description": "Trusted root CA certificate for Android Enterprise personally-owned work profile (BYOD) devices.",
+  "roleScopeTagIds": [
+    "0"
+  ],
+  "certFileName": "RootCA.cer",
+  "trustedRootCertificate": "<BASE64_ENCODED_ROOT_CA_CERTIFICATE>"
+}
