@@ -120,7 +120,7 @@ The two lists must match. Otherwise detection keeps reporting a service that rem
       Select-Object Name, DisplayName, Status, StartType
   Get-MpComputerStatus | Select-Object AMServiceEnabled, AntivirusEnabled, RealTimeProtectionEnabled, AMRunningMode
   ```
-- **"Skipped ... service is Disabled"**: check for an Intune antivirus policy or Group Policy that turns off Defender, the `DisableAntiSpyware` registry value under `HKLM\SOFTWARE\Policies\Microsoft Windows Defender`, or another security product. Fix the cause; the next run reports the device as fixed.
+- **"Skipped ... service is Disabled"**: check for an Intune antivirus policy or Group Policy that turns off Defender, the `DisableAntiSpyware` registry value under `HKLM\SOFTWARE\Policies\Microsoft\Windows Defender`, or another security product. Fix the cause; the next run reports the device as fixed.
 - **"Failed to start ... Access is denied"**: Tamper Protection or the service's own protection blocked the start. Check **Windows Security > Virus & threat protection** on the device and the Defender event log (Event Viewer > Applications and Services Logs > Microsoft > Windows > Windows Defender > Operational).
 - **"Failed to start ... Time out has expired"**: the service didn't start within 2 minutes. Check the System event log for Service Control Manager errors (event IDs 7000, 7001, 7023, 7031, 7034). A Defender platform update (`Update-MpSignature`, or the latest platform update from Windows Update) or a restart often fixes it.
 - **A device with another antivirus shows Defender services as fine**: expected. Defender Antivirus services are skipped when another antivirus product is active.
