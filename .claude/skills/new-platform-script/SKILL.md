@@ -13,6 +13,21 @@ If the task is something that must be checked and fixed again and again on a sch
 "keep X turned on"), tell me it fits Intune **Remediations** better and suggest `/new-remediation`
 instead - but build the platform script if I still want it.
 
+## Steps
+
+Do these in order, every time:
+
+1. **Create a new directory for the platform script** inside `Platform Scripts/`, named after the
+   platform script's task in plain words (for example `Platform Scripts/Set Time Zone`).
+   See "Where to put it".
+2. **Write the PowerShell script (the platform script)** that performs the given task.
+   See "1. The PowerShell script".
+3. **Write the `README.md` for the platform script**, covering its use, typical actions, and the
+   step-by-step process (what the script does on the device and how to add it in Intune).
+   See "2. README.md".
+4. **Put both files in the new directory** - the directory holds exactly the script and its
+   `README.md`, nothing else. Then check, commit and push (see "Before finishing").
+
 ## Platform script facts (Microsoft Learn: "Use PowerShell scripts on Windows devices in Intune")
 
 Design every script around how Intune runs platform scripts:
@@ -36,7 +51,7 @@ Design every script around how Intune runs platform scripts:
   scripts). Scripts don't run on Windows in S mode or Surface Hub.
 - Don't put passwords, secrets or personal data in scripts.
 
-## Where to put it
+## Where to put it (step 1)
 
 Use the same directory structure as the `Remediation/` directory: one sub-directory per item, named
 in plain words after what it does.
@@ -65,9 +80,9 @@ in plain words after what it does.
   layout (for example `Platform Scripts/Enable BitLocker/`). Otherwise use
   `Remediation/Detect and Remove Adobe Pac/` as the reference for script style and logging.
 
-## Files to create in that folder
+## Files to create in the new directory (steps 2-4)
 
-### 1. The PowerShell script - `<Verb>-<Noun>.ps1`
+### 1. The PowerShell script - `<Verb>-<Noun>.ps1` (step 2)
 
 Name it with an approved PowerShell verb, for example `Set-TimeZone.ps1`, `Install-Fonts.ps1`,
 `Add-NetworkDrive.ps1`. Don't reuse the name of a built-in cmdlet (for example use
@@ -109,7 +124,7 @@ the sub-directory uses the plain-words name described above.
   that Intune treats any non-zero code as a failure.
 - End with one short summary line via `Write-Output`.
 
-### 2. README.md
+### 2. README.md (step 3)
 
 Describe the script for an Intune admin who has never seen it, with these sections:
 
