@@ -38,26 +38,32 @@ Design every script around how Intune runs platform scripts:
 
 ## Where to put it
 
-- Every platform script gets **its own folder** inside `Platform Scripts/` at the repo root (create
-  `Platform Scripts/` if it does not exist). Never put two scripts in one folder, and never put a
-  script directly in `Platform Scripts/`.
-- Name the folder **exactly like the script, without `.ps1`**. For example, the script
-  `Set-TimeZone.ps1` goes in `Platform Scripts/Set-TimeZone/`, and `Add-NetworkDrive.ps1` goes in
-  `Platform Scripts/Add-NetworkDrive/`.
-- The folder contains **exactly these two files**: the script and its `README.md`:
+Use the same directory structure as the `Remediation/` directory: one sub-directory per item, named
+in plain words after what it does.
+
+- Every platform script gets **its own sub-directory** inside `Platform Scripts/` at the repo root
+  (create `Platform Scripts/` if it does not exist). Never put two scripts in one sub-directory, and
+  never put a script directly in `Platform Scripts/`.
+- Name the sub-directory after the platform script's task **in plain words, Title Case, with spaces**,
+  starting with the action - the same style as `Remediation/Detect and Enable BitLocker`, without the
+  "Detect and" part. For example: `Platform Scripts/Enable BitLocker`,
+  `Platform Scripts/Set Time Zone`, `Platform Scripts/Map Shared Network Drive`,
+  `Platform Scripts/Install Corporate Fonts`.
+- The sub-directory contains **exactly these two files**: the script and its `README.md`:
 
   ```
-  Platform Scripts/
-    Set-TimeZone/
-      Set-TimeZone.ps1
+  Remediation/                          Platform Scripts/
+    Detect and Enable BitLocker/          Enable BitLocker/
+      Detect-BitLocker.ps1                  Enable-OSDriveBitLocker.ps1
+      Remediate-BitLocker.ps1               README.md
       README.md
   ```
 
-- If a folder with that name already exists, ask me before overwriting.
-- If `Platform Scripts/.gitkeep` exists, delete it once the new folder has real files.
-- If other folders in `Platform Scripts/` already exist, match their script style and README layout.
-  Otherwise use `Remediation/Detect and Remove Adobe Pac/` as the reference for script style and
-  logging.
+- If a sub-directory with that name already exists, ask me before overwriting.
+- If `Platform Scripts/.gitkeep` exists, delete it once the new sub-directory has real files.
+- If other sub-directories in `Platform Scripts/` already exist, match their script style and README
+  layout (for example `Platform Scripts/Enable BitLocker/`). Otherwise use
+  `Remediation/Detect and Remove Adobe Pac/` as the reference for script style and logging.
 
 ## Files to create in that folder
 
@@ -65,7 +71,8 @@ Design every script around how Intune runs platform scripts:
 
 Name it with an approved PowerShell verb, for example `Set-TimeZone.ps1`, `Install-Fonts.ps1`,
 `Add-NetworkDrive.ps1`. Don't reuse the name of a built-in cmdlet (for example use
-`Enable-OSDriveBitLocker.ps1`, not `Enable-BitLocker.ps1`). This name is also the folder name.
+`Enable-OSDriveBitLocker.ps1`, not `Enable-BitLocker.ps1`). The script file uses this Verb-Noun name;
+the sub-directory uses the plain-words name described above.
 
 - **Comment-based help header** (`.SYNOPSIS`, `.DESCRIPTION`, `.NOTES`) with: what it does, every
   action in order, exit codes, the Intune settings to use (run as user or SYSTEM, 64-bit, signature
