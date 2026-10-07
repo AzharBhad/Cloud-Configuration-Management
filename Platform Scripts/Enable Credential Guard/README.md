@@ -183,7 +183,7 @@ Remove the script's assignment first, or it may run again.
 | Message | Cause and fix |
 |---|---|
 | `Not supported: Microsoft Windows 11 Pro` | Credential Guard needs Enterprise or Education. Upgrade the edition (Windows Enterprise E3/E5 subscription activation upgrades Pro automatically), then re-run. |
-| `Not supported: the device does not report hardware virtualization support` | Turn on Intel VT-x / AMD-V (and VT-d / IOMMU for DMA protection) in the firmware. For VMs: use a Generation 2 VM and allow nested virtualization on the host. |
+| `Not supported: the device does not report hardware virtualization support` | Turn on Intel VT-x / AMD-V (and VT-d / IOMMU for DMA protection) in the firmware. For VMs: use a Generation 2 VM on a Hyper-V host with an IOMMU. |
 | `Not supported: UEFI Secure Boot is off` | Turn on Secure Boot in the firmware. Devices installed in legacy BIOS mode need converting to UEFI (`mbr2gpt`) first. |
 | `Blocked by policy: ...` | A Group Policy or Intune policy turns Credential Guard or VBS off. Find it (`gpresult /h report.html`, or Intune **Devices > Configuration** and **Endpoint security > Account protection**) and change it. |
 | Success, but Credential Guard isn't running after a restart | Check `msinfo32`. If VBS is **Enabled but not running**, a hardware requirement isn't met (often virtualization off in firmware or an incompatible hypervisor driver). Microsoft's hardware readiness tool shows which. |
