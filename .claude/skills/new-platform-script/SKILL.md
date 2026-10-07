@@ -38,22 +38,34 @@ Design every script around how Intune runs platform scripts:
 
 ## Where to put it
 
-- Create a new folder inside `Platform Scripts/` at the repo root (create `Platform Scripts/` if it
-  does not exist).
-- Name the folder after the task in plain words, for example `Platform Scripts/Set Time Zone` or
-  `Platform Scripts/Map Shared Network Drive`. If a folder with that name already exists, ask me
-  before overwriting.
+- Every platform script gets **its own folder** inside `Platform Scripts/` at the repo root (create
+  `Platform Scripts/` if it does not exist). Never put two scripts in one folder, and never put a
+  script directly in `Platform Scripts/`.
+- Name the folder **exactly like the script, without `.ps1`**. For example, the script
+  `Set-TimeZone.ps1` goes in `Platform Scripts/Set-TimeZone/`, and `Add-NetworkDrive.ps1` goes in
+  `Platform Scripts/Add-NetworkDrive/`.
+- The folder contains **exactly these two files**: the script and its `README.md`:
+
+  ```
+  Platform Scripts/
+    Set-TimeZone/
+      Set-TimeZone.ps1
+      README.md
+  ```
+
+- If a folder with that name already exists, ask me before overwriting.
 - If `Platform Scripts/.gitkeep` exists, delete it once the new folder has real files.
-- If other folders in `Platform Scripts/` already exist, match their structure, style and README
-  layout. Otherwise use `Remediation/Detect and Remove Adobe Pac/` as the reference for script style
-  and logging.
+- If other folders in `Platform Scripts/` already exist, match their script style and README layout.
+  Otherwise use `Remediation/Detect and Remove Adobe Pac/` as the reference for script style and
+  logging.
 
 ## Files to create in that folder
 
 ### 1. The PowerShell script - `<Verb>-<Noun>.ps1`
 
 Name it with an approved PowerShell verb, for example `Set-TimeZone.ps1`, `Install-Fonts.ps1`,
-`Add-NetworkDrive.ps1`.
+`Add-NetworkDrive.ps1`. Don't reuse the name of a built-in cmdlet (for example use
+`Enable-OSDriveBitLocker.ps1`, not `Enable-BitLocker.ps1`). This name is also the folder name.
 
 - **Comment-based help header** (`.SYNOPSIS`, `.DESCRIPTION`, `.NOTES`) with: what it does, every
   action in order, exit codes, the Intune settings to use (run as user or SYSTEM, 64-bit, signature
