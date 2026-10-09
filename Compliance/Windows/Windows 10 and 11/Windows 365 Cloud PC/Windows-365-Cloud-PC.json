@@ -1,0 +1,28 @@
+{
+  "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
+  "displayName": "WIN-COMP-Windows 365 Cloud PC",
+  "description": "Compliance for Windows 365 Cloud PCs: encryption of data storage, firewall, TPM, antivirus/antispyware, Microsoft Defender Antimalware with current security intelligence, password required, and Defender for Endpoint machine risk score at or under Low. Devices are marked noncompliant immediately.",
+  "storageRequireEncryption": true,
+  "activeFirewallRequired": true,
+  "tpmRequired": true,
+  "antivirusRequired": true,
+  "antiSpywareRequired": true,
+  "defenderEnabled": true,
+  "signatureOutOfDate": true,
+  "passwordRequired": true,
+  "deviceThreatProtectionEnabled": true,
+  "deviceThreatProtectionRequiredSecurityLevel": "low",
+  "scheduledActionsForRule": [
+    {
+      "ruleName": "PasswordRequired",
+      "scheduledActionConfigurations": [
+        {
+          "actionType": "block",
+          "gracePeriodHours": 0,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        }
+      ]
+    }
+  ]
+}
