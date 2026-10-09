@@ -1,0 +1,21 @@
+{
+  "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
+  "displayName": "WIN-COMP-Device Storage Encryption",
+  "description": "Requires encryption of data storage, Microsoft Defender Antimalware and real-time protection on Windows 10/11 devices. Devices are marked noncompliant after 0.25 days (6 hours).",
+  "storageRequireEncryption": true,
+  "defenderEnabled": true,
+  "rtpEnabled": true,
+  "scheduledActionsForRule": [
+    {
+      "ruleName": "PasswordRequired",
+      "scheduledActionConfigurations": [
+        {
+          "actionType": "block",
+          "gracePeriodHours": 6,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        }
+      ]
+    }
+  ]
+}
