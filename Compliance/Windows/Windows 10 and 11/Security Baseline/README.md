@@ -21,7 +21,7 @@ Baseline Intune compliance policy for **Windows 10 and Windows 11** devices. It 
 | Profile type | – (single profile for this platform) |
 | Graph `@odata.type` | `#microsoft.graph.windows10CompliancePolicy` |
 | Graph endpoint | `POST https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies` |
-| File | `Windows-10-and-11-Security-Baseline.json` |
+| File | `Security-Baseline.json` |
 | Assignment target | **User groups** of licensed Windows users, or device groups of corporate Windows devices. Don't mix both for the same device. |
 | Noncompliance actions | **Mark device noncompliant** after **1 day** (24-hour grace period) |
 
@@ -140,7 +140,7 @@ Not configured in this baseline. Once the **Microsoft Defender for Endpoint conn
 Connect-MgGraph -Scopes "DeviceManagementConfiguration.ReadWrite.All"
 
 # 2. Create the policy from the JSON (beta endpoint - see the NOTE in "Policy summary")
-$body   = Get-Content ".\Windows-10-and-11-Security-Baseline.json" -Raw
+$body   = Get-Content ".\Security-Baseline.json" -Raw
 $policy = Invoke-MgGraphRequest -Method POST `
           -Uri "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies" `
           -Body $body -ContentType "application/json"
