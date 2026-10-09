@@ -1,0 +1,36 @@
+{
+  "@odata.type": "#microsoft.graph.macOSCompliancePolicy",
+  "displayName": "macOS - Compliance Policy - Default",
+  "description": "",
+  "systemIntegrityProtectionEnabled": true,
+  "osMinimumVersion": "15.0",
+  "storageRequireEncryption": true,
+  "firewallEnabled": true,
+  "firewallEnableStealthMode": true,
+  "gatekeeperAllowedAppSource": "macAppStoreAndIdentifiedDevelopers",
+  "scheduledActionsForRule": [
+    {
+      "ruleName": "PasswordRequired",
+      "scheduledActionConfigurations": [
+        {
+          "actionType": "block",
+          "gracePeriodHours": 6,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "notification",
+          "gracePeriodHours": 0,
+          "notificationTemplateId": "<notification-template-id>",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "notification",
+          "gracePeriodHours": 48,
+          "notificationTemplateId": "<notification-template-id>",
+          "notificationMessageCCList": []
+        }
+      ]
+    }
+  ]
+}
