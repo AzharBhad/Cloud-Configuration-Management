@@ -1,26 +1,27 @@
 {
   "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
-  "displayName": "WIN-COMP-Windows 10 and 11 Security Baseline",
-  "description": "Baseline compliance for Windows 10/11: BitLocker, Secure Boot and code integrity (Device Health Attestation), encryption, firewall, TPM, antivirus/antispyware, Microsoft Defender Antimalware with real-time protection and current security intelligence, minimum OS Windows 10 22H2. Devices are marked noncompliant after a 1-day grace period.",
-  "bitLockerEnabled": true,
+  "displayName": "Windows-Compliance-AllDevices-Baseline-Immediate",
+  "description": "Baseline compliance for all Windows 10/11 devices: Secure Boot and code integrity, firewall, TPM, antivirus/antispyware, Microsoft Defender Antimalware with current security intelligence, password required (no simple passwords, required on return from idle), and Defender for Endpoint machine risk score at or under Low. Devices are marked noncompliant immediately.",
   "secureBootEnabled": true,
   "codeIntegrityEnabled": true,
-  "osMinimumVersion": "10.0.19045.0",
-  "storageRequireEncryption": true,
+  "passwordRequired": true,
+  "passwordBlockSimple": true,
+  "passwordRequiredToUnlockFromIdle": true,
   "activeFirewallRequired": true,
   "tpmRequired": true,
   "antivirusRequired": true,
   "antiSpywareRequired": true,
   "defenderEnabled": true,
   "signatureOutOfDate": true,
-  "rtpEnabled": true,
+  "deviceThreatProtectionEnabled": true,
+  "deviceThreatProtectionRequiredSecurityLevel": "low",
   "scheduledActionsForRule": [
     {
       "ruleName": "PasswordRequired",
       "scheduledActionConfigurations": [
         {
           "actionType": "block",
-          "gracePeriodHours": 24,
+          "gracePeriodHours": 0,
           "notificationTemplateId": "",
           "notificationMessageCCList": []
         }
