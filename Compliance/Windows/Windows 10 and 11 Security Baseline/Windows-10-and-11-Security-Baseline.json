@@ -1,0 +1,30 @@
+{
+  "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
+  "displayName": "WIN-COMP-Windows 10 and 11 Security Baseline",
+  "description": "Baseline compliance for Windows 10/11: BitLocker, Secure Boot and code integrity (Device Health Attestation), encryption, firewall, TPM, antivirus/antispyware, Microsoft Defender Antimalware with real-time protection and current security intelligence, minimum OS Windows 10 22H2. Devices are marked noncompliant after a 1-day grace period.",
+  "bitLockerEnabled": true,
+  "secureBootEnabled": true,
+  "codeIntegrityEnabled": true,
+  "osMinimumVersion": "10.0.19045.0",
+  "storageRequireEncryption": true,
+  "activeFirewallRequired": true,
+  "tpmRequired": true,
+  "antivirusRequired": true,
+  "antiSpywareRequired": true,
+  "defenderEnabled": true,
+  "signatureOutOfDate": true,
+  "rtpEnabled": true,
+  "scheduledActionsForRule": [
+    {
+      "ruleName": "PasswordRequired",
+      "scheduledActionConfigurations": [
+        {
+          "actionType": "block",
+          "gracePeriodHours": 24,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        }
+      ]
+    }
+  ]
+}
