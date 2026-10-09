@@ -1,0 +1,37 @@
+{
+  "@odata.type": "#microsoft.graph.androidWorkProfileCompliancePolicy",
+  "displayName": "AND-BYOD-COMP-Retire Version 13",
+  "description": "Personally owned Android work profile devices on Android 13 or older are marked noncompliant immediately, emailed immediately and after 2 days, and added to the retire list after 3 days.",
+  "osMinimumVersion": "14.0",
+  "scheduledActionsForRule": [
+    {
+      "ruleName": "PasswordRequired",
+      "scheduledActionConfigurations": [
+        {
+          "actionType": "block",
+          "gracePeriodHours": 0,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "notification",
+          "gracePeriodHours": 0,
+          "notificationTemplateId": "<notification-template-id>",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "notification",
+          "gracePeriodHours": 48,
+          "notificationTemplateId": "<notification-template-id>",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "retire",
+          "gracePeriodHours": 72,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        }
+      ]
+    }
+  ]
+}
