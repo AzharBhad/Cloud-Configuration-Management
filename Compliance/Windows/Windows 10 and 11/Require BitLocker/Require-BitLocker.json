@@ -1,6 +1,6 @@
 {
   "@odata.type": "#microsoft.graph.windows10CompliancePolicy",
-  "displayName": "Windows-Compliance-AllDevices-Bitlocker-5days",
+  "displayName": "Windows-Compliance-for-Devices-Bitlocker-days",
   "description": "Evaluation delay for newly provisioned devices passing DHA check",
   "bitLockerEnabled": true,
   "scheduledActionsForRule": [
