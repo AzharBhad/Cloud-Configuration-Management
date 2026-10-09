@@ -1,0 +1,33 @@
+{
+  "@odata.type": "#microsoft.graph.androidDeviceOwnerCompliancePolicy",
+  "displayName": "AND-CORP-COMP-Security Patch Level",
+  "description": "Corporate-owned Android devices must have Android security patch level 2025-01-05 or later and a numeric (or stronger) device password. Marked noncompliant after 0.25 days; users are emailed immediately and after 2 days.",
+  "minAndroidSecurityPatchLevel": "2025-01-05",
+  "passwordRequired": true,
+  "passwordRequiredType": "numeric",
+  "scheduledActionsForRule": [
+    {
+      "ruleName": "PasswordRequired",
+      "scheduledActionConfigurations": [
+        {
+          "actionType": "block",
+          "gracePeriodHours": 6,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "notification",
+          "gracePeriodHours": 0,
+          "notificationTemplateId": "<notification-template-id>",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "notification",
+          "gracePeriodHours": 48,
+          "notificationTemplateId": "<notification-template-id>",
+          "notificationMessageCCList": []
+        }
+      ]
+    }
+  ]
+}
