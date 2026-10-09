@@ -13,7 +13,7 @@ Intune compliance policy for **all Windows 10 and Windows 11 devices**. It requi
 
 | Item | Value |
 |---|---|
-| Display name | `Windows-Compliance-AllDevices-Bitlocker-5days` |
+| Display name | `Windows-Compliance-for-Devices-Bitlocker` |
 | Description | `Evaluation delay for newly provisioned devices passing DHA check` |
 | Platform | Windows 10 and later |
 | Profile type | Windows 10/11 compliance policy |
