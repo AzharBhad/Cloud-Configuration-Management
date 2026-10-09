@@ -1,0 +1,34 @@
+{
+  "@odata.type": "#microsoft.graph.androidWorkProfileCompliancePolicy",
+  "displayName": "Android - Compliance Policy - Default - BYOD",
+  "description": "",
+  "securityBlockJailbrokenDevices": true,
+  "securityRequireGooglePlayServices": true,
+  "securityRequireUpToDateSecurityProviders": true,
+  "securityRequireSafetyNetAttestationBasicIntegrity": true,
+  "securityRequireSafetyNetAttestationCertifiedDevice": true,
+  "securityRequiredAndroidSafetyNetEvaluationType": "hardwareBacked",
+  "osMinimumVersion": "14.0",
+  "storageRequireEncryption": true,
+  "securityPreventInstallAppsFromUnknownSources": true,
+  "securityRequireCompanyPortalAppIntegrity": true,
+  "securityDisableUsbDebugging": true,
+  "passwordRequired": true,
+  "requiredPasswordComplexity": "medium",
+  "passwordRequiredType": "numericComplex",
+  "passwordMinimumLength": 6,
+  "passwordMinutesOfInactivityBeforeLock": 5,
+  "scheduledActionsForRule": [
+    {
+      "ruleName": "PasswordRequired",
+      "scheduledActionConfigurations": [
+        {
+          "actionType": "block",
+          "gracePeriodHours": 6,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        }
+      ]
+    }
+  ]
+}
