@@ -1,0 +1,37 @@
+{
+  "@odata.type": "#microsoft.graph.macOSCompliancePolicy",
+  "displayName": "macOS - Retire Version 14",
+  "description": "",
+  "osMinimumVersion": "15",
+  "scheduledActionsForRule": [
+    {
+      "ruleName": "PasswordRequired",
+      "scheduledActionConfigurations": [
+        {
+          "actionType": "block",
+          "gracePeriodHours": 0,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "notification",
+          "gracePeriodHours": 0,
+          "notificationTemplateId": "<notification-template-id>",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "notification",
+          "gracePeriodHours": 48,
+          "notificationTemplateId": "<notification-template-id>",
+          "notificationMessageCCList": []
+        },
+        {
+          "actionType": "retire",
+          "gracePeriodHours": 72,
+          "notificationTemplateId": "",
+          "notificationMessageCCList": []
+        }
+      ]
+    }
+  ]
+}
