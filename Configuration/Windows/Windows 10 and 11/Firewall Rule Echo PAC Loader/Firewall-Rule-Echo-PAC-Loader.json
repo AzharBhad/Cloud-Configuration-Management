@@ -1,0 +1,13 @@
+{
+  "name": "WIN-CFG-Firewall Rule - Echo PAC Loader",
+  "description": "Endpoint security > Firewall > Windows Firewall Rules. Rule Echo-PAC: Allow, Inbound, Enabled, Interface types All, File path C:\\, Network types FW_PROFILE_TYPE_ALL. Settings are added in the admin center; replace this file with the exported policy (see README).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<windows-firewall-rules-template-id>"
+  },
+  "settings": []
+}
