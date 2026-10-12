@@ -1,0 +1,31 @@
+{
+  "@odata.type": "#microsoft.graph.windowsDeliveryOptimizationConfiguration",
+  "displayName": "Windows - Delivery Optimization",
+  "description": "Delivery Optimization for Windows 10/11: group peering (DHCP option Group ID, subnet-restricted), percentage bandwidth limits, peer caching thresholds, absolute 6 GB cache and VPN peer caching.",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "deliveryOptimizationMode": "httpWithPeeringPrivateGroup",
+  "restrictPeerSelectionBy": "subnetMask",
+  "groupIdSource": {
+    "@odata.type": "#microsoft.graph.deliveryOptimizationGroupIdSourceOptions",
+    "groupIdSourceOption": "dhcpUserOption"
+  },
+  "bandwidthMode": {
+    "@odata.type": "#microsoft.graph.deliveryOptimizationBandwidthPercentage",
+    "maximumForegroundBandwidthPercentage": 75,
+    "maximumBackgroundBandwidthPercentage": 50
+  },
+  "backgroundDownloadFromHttpDelayInSeconds": 600,
+  "foregroundDownloadFromHttpDelayInSeconds": 60,
+  "minimumRamAllowedToPeerInGigabytes": 4,
+  "minimumDiskSizeAllowedToPeerInGigabytes": 40,
+  "minimumFileSizeToCacheInMegabytes": 10,
+  "minimumBatteryPercentageAllowedToUpload": 30,
+  "maximumCacheAgeInDays": 30,
+  "maximumCacheSize": {
+    "@odata.type": "#microsoft.graph.deliveryOptimizationMaxCacheSizeAbsolute",
+    "maximumCacheSizeInGigabytes": 6
+  },
+  "vpnPeerCaching": "enabled"
+}
