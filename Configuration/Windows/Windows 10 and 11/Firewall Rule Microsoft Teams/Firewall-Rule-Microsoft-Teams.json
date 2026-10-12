@@ -1,0 +1,13 @@
+{
+  "name": "WIN-CFG-Firewall Rule - Microsoft Teams",
+  "description": "Endpoint security > Firewall > Windows Firewall Rules. Rule Microsoft Teams: Allow, Inbound, Enabled, Protocol 17 (UDP), Interface types All, Network types FW_PROFILE_TYPE_ALL; local port range and remote address range not configured (any). Settings are added in the admin center; replace this file with the exported policy (see README).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<windows-firewall-rules-template-id>"
+  },
+  "settings": []
+}
