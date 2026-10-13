@@ -1,0 +1,13 @@
+{
+  "name": "WIN-CFG-Firewall Rule - PC Refresh Tool",
+  "description": "Endpoint security > Firewall > Windows Firewall Rules. Rule PC Refresh Tool: Allow, Inbound, Enabled, Protocol 6 (TCP), Local address ranges * (any, assumed), Remote address ranges LocalSubnet (assumed), Interface types All, Network types FW_PROFILE_TYPE_ALL. Settings are added in the admin center; replace this file with the exported policy (see README).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<windows-firewall-rules-template-id>"
+  },
+  "settings": []
+}
