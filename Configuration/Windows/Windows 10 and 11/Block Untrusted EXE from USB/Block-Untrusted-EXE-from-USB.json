@@ -1,0 +1,13 @@
+{
+  "name": "WIN-CFG-Block Untrusted EXE from USB",
+  "description": "Block Untrusted EXEs that run from USB. Endpoint security > Attack surface reduction > Attack Surface Reduction Rules: Block untrusted and unsigned processes that run from USB (b2b3f03d-6a65-4f7b-a9c7-1c7ef74a9ba4) = Warn; all other rules Not configured. Settings are added in the admin center; replace this file with the exported policy (see README).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}
