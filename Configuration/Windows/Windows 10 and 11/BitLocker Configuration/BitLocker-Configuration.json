@@ -1,0 +1,13 @@
+{
+  "name": "Windows - Bitlocker Configuration",
+  "description": "Silent BitLocker: require encryption, no third-party warning, standard-user encryption, XTS-AES 256, TPM-only startup, recovery password escrow to Entra ID + rotation.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<bitlocker-template-id>"
+  },
+  "settings": []
+}
