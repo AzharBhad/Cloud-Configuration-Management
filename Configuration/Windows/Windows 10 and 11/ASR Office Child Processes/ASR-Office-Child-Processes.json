@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - Office_Child_Process",
+  "description": "Block all Office applications from creating child processes (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}

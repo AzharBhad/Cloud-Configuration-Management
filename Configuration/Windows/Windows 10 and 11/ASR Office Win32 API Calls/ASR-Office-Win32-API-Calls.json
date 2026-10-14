@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - Office_APIcalls",
+  "description": "Block Win32 API calls from Office macros (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}

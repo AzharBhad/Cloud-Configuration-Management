@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - WMI_Persistence",
+  "description": "Block persistence through WMI event subscription (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}

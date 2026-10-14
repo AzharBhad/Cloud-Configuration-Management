@@ -1,0 +1,13 @@
+{
+  "name": "Windows - Defender Antivirus Configuration",
+  "description": "Enterprise Microsoft Defender Antivirus configuration (real-time, cloud, PUA, network protection, scans, updates).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<microsoft-defender-antivirus-template-id>"
+  },
+  "settings": []
+}

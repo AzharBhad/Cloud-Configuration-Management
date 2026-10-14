@@ -1,0 +1,10 @@
+{
+  "name": "Windows - User Profile Settings",
+  "description": "OneDrive Known Folder Move, silent sign-in, Files On-Demand, block personal OneDrive, and clean up user profiles unused for 90 days.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}

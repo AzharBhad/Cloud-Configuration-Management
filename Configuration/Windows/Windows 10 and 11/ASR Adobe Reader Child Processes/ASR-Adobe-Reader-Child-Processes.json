@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - Adobe_Child_Process",
+  "description": "Block Adobe Reader from creating child processes (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}

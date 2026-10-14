@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - EXE_Block_Java_VBscript",
+  "description": "Block JavaScript or VBScript from launching downloaded executable content (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}
