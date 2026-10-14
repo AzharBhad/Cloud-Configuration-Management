@@ -1,0 +1,10 @@
+{
+  "name": "Windows - Enable Local Administrator Account",
+  "description": "Enable the built-in local Administrator account (managed by Windows LAPS).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}
