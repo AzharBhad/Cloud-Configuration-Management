@@ -1,0 +1,10 @@
+{
+  "name": "Windows - LAPS Profile",
+  "description": "Windows LAPS: backup to Entra ID, 30-day rotation, 14-character complex password, reset and sign out 8 hours after use.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}
