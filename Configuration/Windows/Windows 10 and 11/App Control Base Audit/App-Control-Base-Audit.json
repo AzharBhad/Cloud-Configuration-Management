@@ -1,0 +1,13 @@
+{
+  "name": "Windows - WDAC - MP Base - Audit ISG+GE+MSFT",
+  "description": "App Control base policy, audit only: trust Windows components and Store apps + apps with good reputation (ISG).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<app-control-for-business-template-id>"
+  },
+  "settings": []
+}
