@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - Office_Code_Inject",
+  "description": "Block Office applications from injecting code into other processes (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}
