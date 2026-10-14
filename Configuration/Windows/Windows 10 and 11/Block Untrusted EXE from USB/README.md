@@ -20,7 +20,7 @@ This follows Microsoft's recommended staged rollout for ASR rules: **Audit → W
 
 | Item | Value |
 |---|---|
-| Policy name | `WIN-CFG-Block Untrusted EXE from USB` |
+| Policy name | `Windows - ASR - USB_untrusted_EXE` (as shown in the policies-list screenshot; previously `WIN-CFG-Block Untrusted EXE from USB`) |
 | Description | Block Untrusted EXEs that run from USB |
 | Platform | Windows (Windows 10, Windows 11 and Windows Server) |
 | Profile type | Endpoint security > Attack surface reduction > **Attack Surface Reduction Rules** (settings catalog format) |
@@ -68,7 +68,7 @@ This follows Microsoft's recommended staged rollout for ASR rules: **Audit → W
 2. Go to **Endpoint security > Attack surface reduction > Create Policy**.
 3. Set **Platform** to **Windows** and **Profile** to **Attack Surface Reduction Rules**, then select **Create**.
 4. **Basics**:
-   - **Name**: `WIN-CFG-Block Untrusted EXE from USB`
+   - **Name**: `Windows - ASR - USB_untrusted_EXE`
    - **Description**: `Block Untrusted EXEs that run from USB`
    - Select **Next**.
 5. **Configuration settings**:
@@ -97,7 +97,7 @@ Connect-MgGraph -Scopes "DeviceManagementConfiguration.ReadWrite.All","DeviceMan
     Where-Object displayName -like "*Attack Surface Reduction Rules*" | Select-Object id, displayName, templateFamily, platforms, technologies
 
 # 2. After creating the policy in the admin center, export it with every setting and definition ID
-$p = (Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?`$filter=name eq 'WIN-CFG-Block Untrusted EXE from USB'").value[0]
+$p = (Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies?`$filter=name eq 'Windows - ASR - USB_untrusted_EXE'").value[0]
 Invoke-MgGraphRequest -Method GET -Uri "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$($p.id)?`$expand=settings" |
     ConvertTo-Json -Depth 30 | Out-File ".\Block-Untrusted-EXE-from-USB.json"
 #    Remove id, createdDateTime, lastModifiedDateTime, settingCount and settings@odata.context before reusing it as an import body.
