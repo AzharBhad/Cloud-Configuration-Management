@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - SafeMode_Reboot_Block",
+  "description": "Block rebooting machine in Safe Mode (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}
