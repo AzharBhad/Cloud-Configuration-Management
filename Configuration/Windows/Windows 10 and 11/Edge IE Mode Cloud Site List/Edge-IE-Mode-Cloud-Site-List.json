@@ -1,0 +1,10 @@
+{
+  "name": "Windows - Edge IE Mode Sites - Cloud List",
+  "description": "Enable Edge IE mode and use the Microsoft 365 admin center cloud site list; report user and neutral sites back to the admin center.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}
