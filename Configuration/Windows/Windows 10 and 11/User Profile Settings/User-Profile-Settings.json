@@ -1,6 +1,6 @@
 {
   "name": "Windows - User Profile Settings",
-  "description": "OneDrive Known Folder Move, silent sign-in, Files On-Demand, block personal OneDrive, and clean up user profiles unused for 90 days.",
+  "description": "Delete user profiles not used for 90 days on system restart.",
   "platforms": "windows10",
   "technologies": "mdm",
   "roleScopeTagIds": [
