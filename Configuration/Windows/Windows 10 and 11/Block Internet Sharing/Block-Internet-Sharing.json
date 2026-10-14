@@ -1,0 +1,10 @@
+{
+  "name": "Windows Security - Block Internet Sharing",
+  "description": "Block Internet Connection Sharing and Mobile Hotspot (Wifi/AllowInternetSharing = Not allowed).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}
