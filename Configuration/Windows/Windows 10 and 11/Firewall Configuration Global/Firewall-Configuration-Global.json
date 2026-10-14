@@ -1,0 +1,13 @@
+{
+  "name": "Firewall Configuration - Global",
+  "description": "Windows Firewall on for all profiles; inbound block / outbound allow; no notifications; drop logging; local rule merge off on Public.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<windows-firewall-template-id>"
+  },
+  "settings": []
+}
