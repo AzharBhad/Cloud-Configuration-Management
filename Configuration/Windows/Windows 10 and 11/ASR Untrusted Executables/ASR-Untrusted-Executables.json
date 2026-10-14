@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - Untrusted_EXE_Block",
+  "description": "Block executable files from running unless they meet a prevalence, age, or trusted list criterion (Warn).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}
