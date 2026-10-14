@@ -1,0 +1,10 @@
+{
+  "name": "Windows - OneDrive Configuration",
+  "description": "OneDrive: silent sign-in, silent Known Folder Move, block opt-out, Files On-Demand, tenant allow list, block personal sync, team sites online-only, low-disk-space protection.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}

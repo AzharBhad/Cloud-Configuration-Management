@@ -1,0 +1,10 @@
+{
+  "@odata.type": "#microsoft.graph.windowsHealthMonitoringConfiguration",
+  "displayName": "Windows - Health and Monitoring Data Collection",
+  "description": "Enables Windows health monitoring with the Endpoint analytics scope.",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "allowDeviceHealthMonitoring": "enabled",
+  "configDeviceHealthMonitoringScope": "bootPerformance"
+}

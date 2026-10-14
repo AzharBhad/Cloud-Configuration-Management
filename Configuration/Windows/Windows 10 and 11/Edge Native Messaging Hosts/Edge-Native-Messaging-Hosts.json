@@ -1,0 +1,10 @@
+{
+  "name": "Windows - Edge - Allowed Native Messaging Hosts",
+  "description": "Block all Edge native messaging hosts except approved ones; disallow user-level (non-admin installed) hosts.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}

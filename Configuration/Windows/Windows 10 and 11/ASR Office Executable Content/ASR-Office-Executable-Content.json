@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - Office_Content_Block",
+  "description": "Block Office applications from creating executable content (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Windows - Defender EDR Onboarding",
+  "description": "Onboard to Defender for Endpoint (Auto from connector) with sample sharing All.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<endpoint-detection-and-response-template-id>"
+  },
+  "settings": []
+}

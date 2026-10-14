@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - SystemTools_Impersonation",
+  "description": "Block use of copied or impersonated system tools (Audit).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}
