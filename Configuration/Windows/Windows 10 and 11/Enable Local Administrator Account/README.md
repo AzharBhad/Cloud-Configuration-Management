@@ -39,7 +39,7 @@ Microsoft's guidance: if you enable the built-in administrator account, **secure
 |---|---|---|---|
 | Accounts Enable Administrator Account Status | **Enable** | `./Device/Vendor/MSFT/Policy/Config/LocalPoliciesSecurityOptions/Accounts_EnableAdministratorAccountStatus` = `1` | Enables the built-in local Administrator account (default `0` = disabled). LAPS manages the account through its well-known RID, so it keeps working even if the account is renamed. |
 
-**Companion policy (required, not part of this file): Endpoint security > Account protection > Local admin password solution (Windows LAPS).** Recommended values:
+**Companion policy (required): [Windows - LAPS Profile](../LAPS%20Profile)** — Windows LAPS settings for this account (equivalent to *Endpoint security > Account protection > Local admin password solution*). Values:
 
 | LAPS setting | Value | CSP |
 |---|---|---|
@@ -62,7 +62,7 @@ Also turn on **Enable Microsoft Entra Local Administrator Password Solution (LAP
 | Licensing | Microsoft Intune Plan 1. Windows LAPS is built into Windows; Microsoft Entra ID P1 isn't required for LAPS backup. |
 | Windows | For LAPS: Windows 11 22H2/21H2 or Windows 10 22H2 with the **April 2023** security update or later |
 | Microsoft Entra | **Enable Microsoft Entra LAPS** turned on in device settings |
-| Companion policy | A **Windows LAPS** policy assigned to the same devices (see above) |
+| Companion policy | [Windows - LAPS Profile](../LAPS%20Profile) assigned to the same devices |
 | Role | Policy and Profile Manager or Intune Administrator. Viewing LAPS passwords needs the *Read local admin password* permission (Cloud Device Administrator / custom role). |
 
 ## Step-by-step: create the policy in the Intune admin center
