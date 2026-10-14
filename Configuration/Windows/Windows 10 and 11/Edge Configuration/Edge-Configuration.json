@@ -1,0 +1,10 @@
+{
+  "name": "Windows - Edge Configuration",
+  "description": "Microsoft Edge enterprise configuration: SmartScreen (sites, downloads, PUA) enforced, no HTTPS warning bypass, balanced tracking prevention, implicit sign-in, no consumer features, updates allowed.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}
