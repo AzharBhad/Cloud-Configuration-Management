@@ -1,0 +1,13 @@
+{
+  "name": "Windows - ASR - Advanced_Ransomware_Protection",
+  "description": "Use advanced protection against ransomware (Block).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<attack-surface-reduction-rules-template-id>"
+  },
+  "settings": []
+}
