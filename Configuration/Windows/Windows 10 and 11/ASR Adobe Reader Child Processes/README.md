@@ -14,7 +14,7 @@ Microsoft's recommended rollout for ASR rules is **Audit → (Warn) → Block**.
 
 | Item | Value |
 |---|---|
-| Policy name | `Windows - ASR - Adobe_Child_Process` (as shown in the screenshot) |
+| Policy name | `Windows_Child_Process_Ad` (as shown in the screenshot) |
 | Description | Block Adobe Reader from creating child processes (Block). |
 | Platform | Windows 10 and later |
 | Profile type | Endpoint security > Attack surface reduction > **Attack Surface Reduction Rules** (settings catalog format) |
