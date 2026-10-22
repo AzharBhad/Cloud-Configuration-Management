@@ -87,9 +87,10 @@ Removing software that Intune didn't install (and so can't uninstall) is a good 
      use Yes so registry and Program Files paths aren't redirected, and set it when creating the package).
      Scope tags, Assignments.
    - Assignments: **device groups** (pilot group first); don't mix user and device groups across
-     include and exclude. The **schedule** is set per assignment: Once, Hourly (every *n* hours, under 24)
-     or Daily at a time. Default **Daily**; say why if the task needs another schedule. Missed runs happen
-     when the device is next online.
+     include and exclude. The **schedule** is set per assignment. List all three options in the README so
+     the admin can choose: **Once** (a date and time), **Hourly** (every *n* hours, under 24) or **Daily**
+     (at a time, device local time unless *Use UTC*). Recommend **Daily** unless the task needs faster
+     correction, and say why. Missed runs happen when the device is next online.
    - How to check results: **Devices > Manage devices > Scripts and remediations** > the package >
      **Device status** (detection and remediation status, output, Export to CSV). Reports: a change is
      reported when it happens, and every 7 days regardless. The client fetches new packages every 8 hours,
