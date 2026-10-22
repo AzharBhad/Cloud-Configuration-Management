@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: print-spooler-stays-disabled
+expected_outcome: |
+  Considers first whether a configuration policy can enforce this and says so; if it builds a remediation, detection checks the service startup type and state, remediation sets Disabled and stops it, and verifies.

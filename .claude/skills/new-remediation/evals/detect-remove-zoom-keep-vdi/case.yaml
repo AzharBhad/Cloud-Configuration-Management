@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: detect-remove-zoom-keep-vdi
+expected_outcome: |
+  Creates Remediation/Detect and Remove Zoom/ with Detect-, Remediate- scripts and README, an exclude list for the VDI plugin in both scripts, silent uninstalls only, correct exit codes, and README with current Learn prerequisites and schedule options.

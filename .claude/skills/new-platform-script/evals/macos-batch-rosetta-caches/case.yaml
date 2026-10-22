@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: macos-batch-rosetta-caches
+expected_outcome: |
+  Treats the Rosetta one as a custom attribute and the caches one as a frequency script, creates two separate folders under Platform Scripts/MacOS/, plans the batch first and ends with one summary table.
