@@ -1,6 +1,6 @@
 ---
 name: new-platform-script
-description: Create a Microsoft Intune platform script for Windows 10/11 (PowerShell) or macOS (shell script), with a README.md, in the "Platform Scripts" folder. Checks first whether a script is the right tool (settings catalog, Remediations, app, custom attribute) and identifies the platform from the request. Use when the user asks for an Intune platform script, a PowerShell or shell script to deploy through Intune, a one-time configuration script, or a macOS hardening/maintenance script.
+description: Create a Microsoft Intune platform script for Windows 10/11 (PowerShell) or macOS (shell script), with a README.md, in the "Platform Scripts" folder. Checks first whether a script is the right tool (settings catalog, Remediations, app, custom attribute) and identifies the platform from the request. Use when the user asks for an Intune platform script, a PowerShell or shell script to deploy through Intune, a one-time configuration script, a macOS hardening/maintenance script, or a macOS custom attribute (report a value per Mac), even if they only say "a script to remove admin rights on Macs" or "push this PowerShell to all laptops". For Windows "keep fixing it" tasks, prefer new-remediation.
 argument-hint: <what the script should do, e.g. "Set the device time zone to GMT Standard Time" or "macOS - remove local admin rights from standard users">
 ---
 
@@ -73,6 +73,12 @@ with the action** (for example `Enable BitLocker`, `Set Time Zone`, `Remove Loca
   Log that a restart is required instead.
 - **Idempotent**: check the current state first and change only what isn't already right. Scripts re-run
   (new users, edits, retries, frequency) and must be safe to run any number of times.
+- **Safe pilots for destructive scripts** (deleting apps or files, removing accounts or rights): add a
+  `DRY_RUN` setting that only logs what would change, default it to `true` when the list of targets is an
+  organization-specific example the admin must review, and say so in the README.
+- **Never leave the device unmanageable**: before removing access (admin rights, accounts, remote
+  management), check that a safe fallback exists (for example an approved, enabled admin account) and
+  stop without changes if it doesn't. A placeholder value left unreplaced must also stop the script.
 - **Logging**: timestamped, every action and its result, no personal data, and keep the log small
   (for example trim or roll over above 1 MB).
 - **Clear exit codes**: `0` success, `1` failure. Intune treats **any non-zero** code as failed.
@@ -182,6 +188,19 @@ Name it in kebab case after the action (`remove-local-admin-rights.sh`, `disable
 - **Exit codes**: `exit 0` success, `exit 1` failure (retries only happen if the retry setting is set).
 - End with one summary line on stdout.
 
+### macOS shell pitfalls (each of these has caused a real bug)
+
+macOS ships **bash 3.2** and BSD tools, which behave differently from the Linux tools where you test:
+- Looping over an **empty array** with `set -u` fails on bash 3.2 (`unbound variable`). Use
+  `for x in ${ARR[@]+"${ARR[@]}"}; do`, which also keeps elements with spaces intact.
+- No bash 4 features: no `declare -A`, `mapfile`/`readarray`, `${var,,}`, `|&`.
+- `stat -f%z` / `stat -f%Su` are BSD syntax (GNU uses `stat -c`). When testing locally, swap them with
+  `sed` in a copy of the script, never in the real one.
+- `grep 'a\|b'` is a GNU extension: use `grep -E 'a|b'`. BSD `sed -i` needs an argument (`sed -i ''`).
+- Avoid awk interval expressions such as `[A-Z]{10}`; use `length($i) == 10 && $i ~ /^[A-Z0-9]+$/`.
+- `zsh` may not be installed where you test. Prefer `#!/bin/bash` (bash 3.2 compatible) unless the task
+  needs zsh, because then `bash -n` and shellcheck can check it.
+
 ### Custom attribute variant (macOS reporting)
 
 When the task only **reports** a value, build a custom attribute script instead:
@@ -229,8 +248,14 @@ Plain, practical language: short sentences, exact menu paths and setting values.
 - **Windows**: the script parses with no errors (use PowerShell 7's parser if Windows PowerShell isn't
   available, and download PowerShell 7 into the scratchpad if `pwsh` is missing). Run PSScriptAnalyzer if
   it's available. ASCII only, under 200 KB.
-- **macOS**: `zsh -n` / `bash -n` passes, and `shellcheck` passes if available (`.zsh` isn't supported by
-  shellcheck, so re-read it carefully). Under 1 MB, valid shebang, LF line endings.
+- **macOS**: `zsh -n` / `bash -n` passes, and `shellcheck -s bash` passes (`.zsh` isn't supported by
+  shellcheck, so re-read it carefully). If shellcheck is missing, install it into the scratchpad with
+  `pip install --target <scratchpad>/sc shellcheck-py` and run `<scratchpad>/sc/bin/shellcheck`.
+  Under 1 MB, valid shebang, LF line endings. Check every item in "macOS shell pitfalls".
+- **Stub tests**: for the main logic, put fake versions of the macOS commands the script calls
+  (`dscl`, `dseditgroup`, `fdesetup`, `socketfilterfw`, …) in a temp folder at the front of `PATH`, and run
+  the script against them: normal run, already-compliant run (must change nothing), dry run, and the
+  safety stop.
 - Test every helper function you can on its own with fake data, especially the "is it already done?"
   checks.
 - Re-read the script for bugs:
@@ -245,3 +270,17 @@ Plain, practical language: short sentences, exact menu paths and setting values.
 - Tell me: the platform identified (and from what), why a script is the right tool, the folder and files
   created, what was and wasn't tested (scripts can't run on Windows or macOS here), anything that needs
   manual handling (PPPC, signing, placeholders), and the exact Intune settings to use.
+- **macOS + Full Disk Access**: if a script uses a TCC-protected command, check whether a PPPC profile
+  granting the Intune agent Full Disk Access exists under `Configuration/MacOS/`. If not, say so and offer
+  `/new-configuration-policy` for it.
+
+## Batch requests
+
+When one request asks for several scripts (for example "all 10 macOS hardening scripts"):
+1. List the plan first: folder, script name, script vs custom attribute, run context, frequency.
+2. Check that no two scripts change the same setting, and that none duplicates an existing folder.
+3. Build and check each script exactly as for a single request (own folder, own README).
+4. Shared README text may come from a small generator in the scratchpad, but re-read every generated
+   README for template glitches (doubled words, empty sections) before committing.
+5. One commit per script folder, push once at the end, and finish with **one** summary table
+   (folder, type, Intune settings, placeholders to replace) instead of ten separate summaries.

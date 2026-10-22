@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: macos-delete-stale-accounts
+expected_outcome: |
+  Builds a macOS bash script with a dry-run default, a safety check for the managed admin account that stops on an unreplaced placeholder, bash 3.2-safe code, README, and passes bash -n / shellcheck.
