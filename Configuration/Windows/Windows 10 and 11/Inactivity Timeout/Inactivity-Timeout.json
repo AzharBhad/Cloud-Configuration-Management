@@ -1,0 +1,10 @@
+{
+  "name": "Windows Inactivity Timeout 10 Minutes",
+  "description": "Locks the Windows session after 10 minutes (600 seconds) without keyboard or mouse input. Local Policies Security Options > Interactive Logon Machine Inactivity Limit = 600 (LocalPoliciesSecurityOptions/InteractiveLogon_MachineInactivityLimit).",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "settings": []
+}
