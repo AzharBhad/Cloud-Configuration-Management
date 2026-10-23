@@ -1,6 +1,6 @@
 ---
 name: new-security-baseline
-description: Create a Microsoft Intune security baseline profile (Security Baseline for Windows 10 and later, Microsoft Defender for Endpoint, Microsoft 365 Apps for Enterprise, Microsoft Edge, Windows 365, HoloLens 2) as an importable Microsoft Graph JSON file plus a README.md with purpose, policy summary, configured settings, prerequisites, step-by-step creation, Graph PowerShell import, assignment and conflict guidance, validation, troubleshooting, rollback and references, verified against Microsoft Learn. One folder per baseline profile under "Security Baselines". Use whenever the user asks for an Intune security baseline, a baseline profile, CIS/Microsoft-recommended hardening through the Endpoint security Security baselines page, updating a baseline to a new version, or wants to recreate a baseline from a screenshot or export, even if they only say "harden Windows with the Microsoft baseline" or "deploy the Edge baseline".
+description: Create a Microsoft Intune security baseline profile (Windows 10 and later, Defender for Endpoint, Microsoft 365 Apps, Edge, Windows 365, HoloLens 2) or an Entra ID Conditional Access baseline (MFA, block legacy authentication) as an importable Microsoft Graph JSON file plus a README.md (purpose, policy summary, settings, prerequisites, step-by-step creation, Graph PowerShell import, assignment and conflicts, validation, troubleshooting, rollback, references), verified on Microsoft Learn, one folder per policy under "Security Baselines". Use whenever the user asks for a security baseline, a baseline profile, Microsoft-recommended hardening from the Endpoint security Security baselines page, a baseline version update, an Entra ID or identity baseline, or wants a baseline recreated from a screenshot or export, even if they only say "harden Windows with the Microsoft baseline" or "deploy the Edge baseline".
 ---
 
 # New Intune security baseline
@@ -32,13 +32,15 @@ from it, keep the defaults or customize some values, and assign it. Knowing this
   become read-only and must be updated to the new version to change settings. Always check the
   current version on Microsoft Learn ("Use security baselines" > Available security baselines)
   instead of trusting memory, because Microsoft releases new versions several times a year.
-- **It isn't the right tool for**: a single setting (use a settings catalog policy -
-  `new-configuration-policy`), checking devices for Conditional Access (compliance policy -
-  `new-compliance-policy`), or "Entra ID / Microsoft 365 tenant baselines" such as Conditional
-  Access templates, security defaults or Exchange/SharePoint settings - Intune baselines only
-  configure **devices** (Windows, HoloLens). Say so and point to the right tool (Conditional Access
-  policy templates in Entra ID, Microsoft Secure Score recommendations, Defender for Office 365
-  preset security policies).
+- **Entra ID baselines are Conditional Access policies.** Intune baselines only configure devices.
+  When the user asks for an Entra ID / identity baseline (MFA for all users, block legacy
+  authentication, admin MFA, risky sign-ins), build **Conditional Access policies** instead, one
+  folder each, following "Entra ID Conditional Access baseline" below. Microsoft documents the
+  Conditional Access Graph schema fully, so these JSON files can be complete and importable.
+- **Not this skill**: a single device setting (settings catalog policy - `new-configuration-policy`),
+  checking devices for Conditional Access (compliance policy - `new-compliance-policy`), and
+  Exchange/SharePoint/Teams tenant settings (say so; point to Microsoft Secure Score
+  recommendations and Defender for Office 365 preset security policies).
 
 ## Steps
 
@@ -66,6 +68,7 @@ Verify names and versions on Learn every time; the table only maps request words
 | Edge, browser | Microsoft Edge Baseline | `Microsoft Edge` | Device groups |
 | Cloud PC, Windows 365 | Windows 365 Security Baseline | `Windows 365` | Device groups of Cloud PCs |
 | HoloLens | HoloLens 2 - Standard / Advanced security baseline | `HoloLens 2` | Device groups |
+| Entra ID, MFA, legacy authentication, sign-in risk, admin protection | Entra ID Conditional Access policies (not an Intune baseline) | `Entra ID` | User groups / all users, with emergency access exclusions |
 
 Other baselines that appear on Learn (for example STIG audit for GCC High, preview baselines)
 follow the same pattern: use their admin center name and a folder named after it.
@@ -85,7 +88,11 @@ Security Baselines/
 ├── Microsoft 365 Apps/
 ├── Microsoft Edge/
 ├── Windows 365/
-└── HoloLens 2/
+├── HoloLens 2/
+└── Entra ID/
+    └── Require MFA All Users/
+        ├── Require-MFA-All-Users.json
+        └── README.md
 ```
 
 - Profile folder name: what the profile is for, in Title Case, including the baseline version
@@ -155,10 +162,20 @@ GitHub-flavored Markdown tables and `> [!NOTE]` / `> [!WARNING]` callouts where 
      with a link to the baseline's Learn reference page (with the version pivot).
    - **Customizations** table: Category, Setting (admin center name), Baseline default, **Configured
      value**, Reason / business justification, CSP link. Empty table → "None: Microsoft defaults".
-   - **High-impact defaults to review** (5-10 settings from this baseline that commonly break things,
-     for example BitLocker/Device Guard/Credential Guard requirements, LSA protection, SmartScreen,
-     ASR rules in Block, Office macro blocking, Edge extension restrictions, remote access/RDP
-     settings), each with its default and who it affects, so the pilot knows what to test.
+   - **High-impact defaults to review** (5-10 settings from this baseline that commonly break things),
+     each with its default and who it affects, so the pilot knows what to test. Look these up in the
+     version's reference page; typical ones:
+     - Windows: Credential Guard / VBS / LSA protection **with UEFI lock** (unassigning won't turn
+       them off; removal needs a manual step per device), local accounts denied network and RDP
+       sign-in (affects LAPS / break-glass local admin use), minimum SMB version, local password
+       length, DMA protection blocking docks before sign-in, BitLocker write protection for removable
+       drives.
+     - Defender: ASR rules in Block, sample submission, cloud protection level, local admin merge.
+     - Edge: extension block list `*` (blocks every extension not force-installed, including ones
+       other policies rely on; plan an allow list first), Basic/Digest authentication blocked,
+       IE mode reload restrictions.
+     - Microsoft 365 Apps: macros from the internet blocked, legacy file formats blocked, add-in
+       restrictions.
 5. **Prerequisites**: licensing (Intune Plan 1; **Microsoft Defender for Endpoint** P1/P2 or Microsoft
    365 E5/Defender for Business for the Defender baseline; Microsoft 365 Apps licenses for the
    Office baseline; Windows 365 for Cloud PCs), supported OS/edition (Windows Pro/Enterprise/
@@ -218,6 +235,33 @@ GitHub-flavored Markdown tables and `> [!NOTE]` / `> [!WARNING]` callouts where 
     `configurationPolicyTemplates` pages, and Entra ID dynamic groups / Intune filters when used.
 
 Plain, practical language: short sentences, exact menu paths and values.
+
+## Entra ID Conditional Access baseline
+
+For identity baselines, each Conditional Access policy is its own folder under
+`Security Baselines/Entra ID/`, with the same two files and the same README sections, adapted:
+
+- **JSON**: the Graph body for `POST https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies`
+  (`displayName`, `state`, `conditions`, `grantControls` / `sessionControls`). Verify every property
+  and enum on the Microsoft Learn `conditionalAccessPolicy` resource page. Start with
+  `"state": "enabledForReportingButNotEnforced"` (report-only). Use placeholders for object IDs
+  (`"<emergency-access-group-object-id>"`) and never real user names.
+- **Start from Microsoft's templates**: Entra admin center > Protection > Conditional Access >
+  **Create new policy from templates** (for example *Require multifactor authentication for all
+  users*, *Block legacy authentication*, *Require MFA for administrators*). Confirm template names
+  and categories on Learn, and name the template the policy follows in the README.
+- **Always exclude** at least two emergency access (break-glass) accounts, usually through a group,
+  and service accounts that can't do MFA (for example the Entra Connect sync account, through the
+  *Directory Synchronization Accounts* role). Say why in the README.
+- **Prerequisites**: Microsoft Entra ID P1 (P2 for sign-in/user risk conditions); security defaults
+  must be turned off before Conditional Access is used; check existing Microsoft-managed policies
+  to avoid duplicates; roles Conditional Access Administrator or Security Administrator.
+- **Validation**: report-only results in the **Sign-in logs** (Conditional Access / Report-only
+  tab) and the **Conditional Access insights and reporting** workbook, then switch `state` to
+  `enabled`. The **What If** tool tests a user and app before enforcing.
+- **Rollback**: set `state` to `disabled` (or back to report-only); the change is immediate and
+  nothing is left on devices.
+- Graph PowerShell scope: `Policy.ReadWrite.ConditionalAccess` (plus `Policy.Read.All`).
 
 ## Conflicts
 
