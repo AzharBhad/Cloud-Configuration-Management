@@ -1,6 +1,6 @@
 ---
 name: new-security-baseline
-description: Create a Microsoft Intune security baseline profile (Windows 10 and later, Defender for Endpoint, Microsoft 365 Apps, Edge, Windows 365, HoloLens 2) or an Entra ID Conditional Access baseline (MFA, block legacy authentication) as an importable Microsoft Graph JSON file plus a README.md (purpose, policy summary, settings, prerequisites, step-by-step creation, Graph PowerShell import, assignment and conflicts, validation, troubleshooting, rollback, references), verified on Microsoft Learn, one folder per policy under "Security Baselines". Use whenever the user asks for a security baseline, a baseline profile, Microsoft-recommended hardening from the Endpoint security Security baselines page, a baseline version update, an Entra ID or identity baseline, or wants a baseline recreated from a screenshot or export, even if they only say "harden Windows with the Microsoft baseline" or "deploy the Edge baseline".
+description: Create a Microsoft Intune security baseline profile (Windows 10 and later, Defender for Endpoint, Microsoft 365 Apps, Edge, Windows 365, HoloLens 2) or an Entra ID Conditional Access baseline (MFA, block legacy authentication) as an importable Microsoft Graph JSON file plus a README.md (purpose, policy summary, settings, prerequisites, step-by-step creation, Graph PowerShell import, assignment and conflicts, validation, troubleshooting, rollback, references), verified on Microsoft Learn, one folder per policy under "Security Baseline". Use whenever the user asks for a security baseline, a baseline profile, Microsoft-recommended hardening from the Endpoint security Security baselines page, a baseline version update, an Entra ID or identity baseline, or wants a baseline recreated from a screenshot or export, even if they only say "harden Windows with the Microsoft baseline" or "deploy the Edge baseline".
 ---
 
 # New Intune security baseline
@@ -75,11 +75,11 @@ follow the same pattern: use their admin center name and a folder named after it
 
 ## Where to put it
 
-All baseline profiles live under `Security Baselines/` at the repo root (create it if missing),
+All baseline profiles live under `Security Baseline/` at the repo root (create it if missing),
 one sub-folder per baseline type, then **one folder per baseline profile**:
 
 ```text
-Security Baselines/
+Security Baseline/
 ├── Windows/
 │   └── Windows Baseline 25H2 Corporate Devices/
 │       ├── Windows-Baseline-25H2-Corporate-Devices.json
@@ -239,7 +239,7 @@ Plain, practical language: short sentences, exact menu paths and values.
 ## Entra ID Conditional Access baseline
 
 For identity baselines, each Conditional Access policy is its own folder under
-`Security Baselines/Entra ID/`, with the same two files and the same README sections, adapted:
+`Security Baseline/Entra ID/`, with the same two files and the same README sections, adapted:
 
 - **JSON**: the Graph body for `POST https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies`
   (`displayName`, `state`, `conditions`, `grantControls` / `sessionControls`). Verify every property
@@ -269,7 +269,7 @@ Before writing anything, search the repo for every customized setting and for th
 high-impact settings:
 
 ```bash
-grep -ril "<setting name or CSP node>" Configuration/ Compliance/ "Security Baselines/"
+grep -ril "<setting name or CSP node>" Configuration/ Compliance/ "Security Baseline/"
 ```
 
 Report overlaps in the README's conflict section (policy folder, setting, value). Common overlaps
@@ -290,7 +290,7 @@ once, and finish with **one** summary table.
 - `python3 -m json.tool <file>.json` passes; no invented template or setting IDs; no secrets.
 - The README has the 12 sections, states the baseline version, and its customizations match the JSON
   (or the JSON is explicitly metadata-only).
-- The folder is `Security Baselines/<baseline type>/<profile name>/` with exactly the JSON and README.
+- The folder is `Security Baseline/<baseline type>/<profile name>/` with exactly the JSON and README.
 - Commit only the new folder with a clear message plus the session's commit trailer, then push with
   `git push -u origin <branch>`. Don't include skill files in the commit.
 - Tell the user: baseline type and version (and where you confirmed it), customizations, whether the

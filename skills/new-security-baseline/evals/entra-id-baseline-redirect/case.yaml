@@ -1,4 +1,4 @@
 schema_version: "1.1"
 name: entra-id-baseline-redirect
 expected_outcome: |
-  Builds Entra ID Conditional Access policies (MFA for all users, block legacy authentication) under Security Baselines/Entra ID/, one folder each with a valid Conditional Access Graph JSON in report-only state and a README, excludes emergency access accounts, and creates no Intune baseline profile.
+  Builds Entra ID Conditional Access policies (MFA for all users, block legacy authentication) under Security Baseline/Entra ID/, one folder each with a valid Conditional Access Graph JSON in report-only state and a README, excludes emergency access accounts, and creates no Intune baseline profile.

@@ -1,4 +1,4 @@
 schema_version: "1.1"
 name: windows-baseline-laptops
 expected_outcome: |
-  Uses the latest Security Baseline for Windows 10 and later version confirmed on Learn, creates Security Baselines/Windows/<profile>/ with JSON + README, lists the two customizations, finds the existing Inactivity Timeout and BitLocker Configuration policies as overlaps, and does not invent template or setting IDs.
+  Uses the latest Security Baseline for Windows 10 and later version confirmed on Learn, creates Security Baseline/Windows/<profile>/ with JSON + README, lists the two customizations, finds the existing Inactivity Timeout and BitLocker Configuration policies as overlaps, and does not invent template or setting IDs.

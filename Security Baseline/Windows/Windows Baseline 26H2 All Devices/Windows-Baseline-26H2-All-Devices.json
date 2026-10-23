@@ -1,0 +1,13 @@
+{
+  "name": "Security Baseline for Windows 10 and later - All Devices",
+  "description": "Security Baseline for Windows 10 and later, version 26H2, Microsoft default settings for all corporate Windows devices. No customizations. Rollout: pilot device group, then All devices with a corporate-Windows assignment filter. See README.md.",
+  "platforms": "windows10",
+  "technologies": "mdm",
+  "roleScopeTagIds": [
+    "<windows-admin-scope-tag-id>"
+  ],
+  "templateReference": {
+    "templateId": "<baseline-template-id-from-tenant>"
+  },
+  "settings": []
+}
